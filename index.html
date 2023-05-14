@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HB Masonic Lodge Golf Tournament</title>
+  <style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-image: url("Images/grass.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 0;
+    margin: 0;
+    color: #444;
+  }
+
+
+  .transparent-box {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 80%;
+    border-radius: 20px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.19), 0px 6px 6px rgba(0, 0, 0, 0.23);
+  }
+
+  .paypal-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+    width: 70%;
+  }
+
+  .paypal-buttons > * {
+    margin-bottom: 10px;
+  }
+
+  h1, h2 {
+    color: #333;
+  }
+
+  p {
+    font-size: 1.1em;
+  }
+
+  img {
+    margin-bottom: 20px;
+  }
+
+ 
+  @media (min-width: 600px) {
+    .transparent-box {
+      max-width: 47%;
+    }
+
+    .paypal-buttons {
+      width: 43%;
+    }
+  }
+  </style>
+
+</head>
+
+
+<body>
+  <div class="transparent-box">
+    <img src="Images/HB380.png" width="125" alt="HB380 Logo">
+    <h1>Huntington Beach Masonic Lodge Presents</h1>
+    <h2>1st Annual GOLF TOURNAMENT for HB PUBLIC SCHOOLS</h2>
+    </br> </br>
+    <p>THURSDAY, SEPTEMBER 21ST</p>
+    <p>9am Shotgun Start</p>
+    </br>
+    <p>MEADOW LARK GOLF CLUB</p>
+    <p>16782 GRAHAM ST. HUNTINGTON BEACH</p>
+    </br>
+    <p>$150 per person</p>
+    </br>
+    <p>GOLF, CART, LUNCH, GOODIE BAG & MORE</p>
+    <p>RAFFLE PRIZES & 50/50 DRAWING</p>
+    </br>
+    <p>Register Now:</p>
+    
+    <div id="paypal-button-container" class="paypal-buttons">
+    </div>
+    
+    <script src="https://www.paypal.com/sdk/js?client-id=AQf16KQZ1h-0DndRryNESxbFLajmCY8Rntyfl5rGXBArA-LUV1rEikA3x9cNJpVhzkAoSszMvfKEbtYb&commit=true&enable-funding=venmo"></script>
+    <script>
+        const fundingSources = [
+                                paypal.FUNDING.PAYPAL,
+                                paypal.FUNDING.VENMO,
+                                paypal.FUNDING.CARD
+                                ];
+                                
+                                for (const fundingSource of fundingSources) {
+                                    paypal
+                                    .Buttons({
+                                        fundingSource,
+                                        style: {
+                                            layout: 'vertical',
+                                            shape: 'pill',
+                                            tagline: 'false'
+                                        },
+                                        createOrder: function (data, actions) {
+                                            const createOrderPayload = {
+                                                purchase_units: [
+                                                                 {
+                                                                     amount: {
+                                                                         value: "150.00",
+                                                                     },
+                                                                 },
+                                                  ],
+                                            };
+                                            
+                                            return actions.order.create(createOrderPayload);
+                                        },
+                                        onApprove: function (data, actions) {
+                                            
+                                        },
+                                    })
+                                    .render("#paypal-button-container");
+                                }
+    </script>
+</br>
+    <p>Or send entry fees with names of foursome to:</p>
+    <br />
+    <p>HB380 GOLF TOURNAMENT</p>
+    <p>601 PALM AVE.</p>
+    <p>HUNTINGTON BEACH, CA 92648</p>
+    </br>
+    <p>MAKE CHECKS PAYABLE TO:</p>
+    <p>Huntington Beach Lodge #380</p>
+    <p>(Note: Charity Golf Tournament in memo)</p>
+    </br></br>
+</div>
