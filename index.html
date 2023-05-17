@@ -97,34 +97,38 @@
                                 paypal.FUNDING.CARD
                                 ];
                                 
-                                for (const fundingSource of fundingSources) {
-                                    paypal
-                                    .Buttons({
-                                        fundingSource,
-                                        style: {
-                                            layout: 'vertical',
-                                            shape: 'pill',
-                                            tagline: 'false'
-                                        },
-                                        createOrder: function (data, actions) {
-                                            const createOrderPayload = {
-                                                purchase_units: [
-                                                                 {
-                                                                     amount: {
-                                                                         value: "150.00",
-                                                                     },
-                                                                 },
-                                                  ],
-                                            };
+        for (const fundingSource of fundingSources) {
+            paypal.Buttons({
+                fundingSource,
+                style: {
+                    layout: 'vertical',
+                    shape: 'pill',
+                    tagline: 'false'
+                },
+                createOrder: function (data, actions) {
+                    const createOrderPayload = {
+                        purchase_units: [
+                            {
+                                items: [
+                                  {
+                                      name: "HB380 Golf Tournament Entry",
+                                      quantity: "1",
+                                      unit_amount: {
+                                          value: "150.00"  
+                                      },
+                                  },
+                                ],
+                            },
+                        ],
+                    };
                                             
-                                            return actions.order.create(createOrderPayload);
-                                        },
-                                        onApprove: function (data, actions) {
-                                            
-                                        },
-                                    })
-                                    .render("#paypal-button-container");
-                                }
+                    return actions.order.create(createOrderPayload);
+                },
+                onApprove: function (data, actions) {                              
+                },
+            })
+            .render("#paypal-button-container");
+        }
     </script>
 </br>
     <p>Or send entry fees with names of foursome to:</p>
